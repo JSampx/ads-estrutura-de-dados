@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.Scanner;
 
 public class DocumentIO {
-
+/* Classe para manipular arquivos .txt na raiz do projeto*/
 
     public static String readFile(String file) {
         StringBuilder text = new StringBuilder();

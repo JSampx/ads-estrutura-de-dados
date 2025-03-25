@@ -1,14 +1,18 @@
+import java.util.List;
+
 public class Palavra {
+
+    //Atributos
     private String palavra;
-    private int ocorrencia;
+    private List<Integer> ocorrencia;
 
-    Palavra seguinte;
-
+    //Construtor com parâmetros
     public Palavra(String palavra) {
         this.palavra = palavra;
     }
 
-    public Palavra(){
+    //Construtor sem parâmetros
+    public Palavra() {
 
     }
 
@@ -18,27 +22,22 @@ public class Palavra {
     }
 
     public void setPalavra(String palavra) {
-        this.palavra = palavra;
+        palavra = palavra;
     }
 
-    public int getOcorrencia() {
-        return ocorrencia;
+    public void getOcorrencia() {
+        System.out.println(ocorrencia);
     }
 
-    public void setOcorrencia(int ocorrencia) {
-        this.ocorrencia = ocorrencia;
+    public void setOcorrencia(Integer ocorrencia) {
+        this.ocorrencia.add(ocorrencia);
     }
 
-    public void setSeguinte(String palavra){
-        seguinte = new Palavra(palavra);
-    }
-
-    public Palavra getSeguinte(){
-        return this.seguinte;
-    }
 
     @Override
     public String toString() {
+
         return palavra;
     }
 }
+

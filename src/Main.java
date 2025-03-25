@@ -7,17 +7,24 @@ public class Main {
     public static void main(String[] args) throws FileNotFoundException {
 //        DocumentIO doc = new DocumentIO();
 //        System.out.println(doc.readFile("filename.txt"));
-        String a = "Avião";
-        char b = 'B';
-        char c = 'C';
-        int ch = (int) a.charAt(0);
-        int d = (int) 'D';
-        System.out.println(ch);
 
-        Palavra palavra1 = new Palavra("Casa");
-        palavra1.setSeguinte("Cedro");
+         Palavra[] vetor = new Palavra[31];
+         var palavra1 = new Palavra("Alberto");
+         int a = Hash.funcHash(palavra1);
+         var palavra2 = new Palavra("Alceu");
+         var palavra3 = new Palavra("Amadeu");
+         palavra1.setSeguinte(palavra2);
+         palavra2.setSeguinte(palavra3);
+         vetor[a] = palavra1;
+         for (int i = 0; i < vetor.length; i++){
+             System.out.println("Posição "+ i + " "+ vetor[i]);
+         }
 
-        System.out.println(palavra1.getSeguinte());
 
     }
+    public boolean checkVector(){
+
+        return false;
+    }
+
 }
