@@ -10,7 +10,7 @@ public class DocumentIO {
             File fileToOpen = new File(file);
             Scanner openDocument = new Scanner(fileToOpen);
             while (openDocument.hasNextLine()) {
-                text.append(openDocument.nextLine());
+                text.append(" "+ openDocument.nextLine());
             }
             openDocument.close();
         } catch (FileNotFoundException e) {

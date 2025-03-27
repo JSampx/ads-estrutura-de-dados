@@ -26,17 +26,20 @@ public class No<Palavra> {
         this.proximoNo = null;
     }
 
+    /*
     public No(Palavra palavra, No<Palavra> proximoNo) {
         this.palavra = palavra;
         this.proximoNo = proximoNo;
     }
+
+     */
 
     @Override
     public String toString() {
         if (proximoNo != null) {
             return palavra + " -> " + proximoNo;
         } else {
-            return (String) palavra;
+            return palavra.toString();
         }
     }
 }

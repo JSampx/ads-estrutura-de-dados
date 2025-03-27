@@ -11,18 +11,13 @@ public class Palavra {
         this.palavra = palavra;
     }
 
-    //Construtor sem parâmetros
-    public Palavra() {
-
-    }
-
 
     public String getPalavra() {
         return palavra;
     }
 
     public void setPalavra(String palavra) {
-        palavra = palavra;
+        this.palavra = palavra;
     }
 
     public void getOcorrencia() {
@@ -33,6 +28,19 @@ public class Palavra {
         this.ocorrencia.add(ocorrencia);
     }
 
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Palavra palavra1 = (Palavra) o;
+        return palavra.equals(palavra1.palavra);
+    }
+
+    @Override
+    public int hashCode() {
+        return palavra.hashCode();
+    }
 
     @Override
     public String toString() {
