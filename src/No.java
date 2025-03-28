@@ -25,6 +25,9 @@ public class No<Palavra> {
         this.palavra = palavra;
         this.proximoNo = null;
     }
+    public No() {
+
+    }
 
     /*
     public No(Palavra palavra, No<Palavra> proximoNo) {
@@ -36,10 +39,10 @@ public class No<Palavra> {
 
     @Override
     public String toString() {
-        if (proximoNo != null) {
+        if (palavra != null && proximoNo != null) {
             return palavra + " -> " + proximoNo;
-        } else {
-            return palavra.toString();
-        }
+        } else return palavra + ""1 111`zsdex m?>;
+
+
     }
 }
