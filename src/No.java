@@ -41,7 +41,7 @@ public class No<Palavra> {
     public String toString() {
         if (palavra != null && proximoNo != null) {
             return palavra + " -> " + proximoNo;
-        } else return palavra + ""1 111`zsdex m?>;
+        } else return palavra + "";
 
 
     }
