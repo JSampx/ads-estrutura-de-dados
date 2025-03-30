@@ -1,7 +1,8 @@
+import java.io.BufferedReader;
 import java.io.FileNotFoundException;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.*;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
@@ -9,46 +10,53 @@ public class Main {
     public static void main(String[] args) throws FileNotFoundException {
 //        DocumentIO doc = new DocumentIO();
 //        System.out.println(doc.readFile("filename.txt"));
-        final int POSICOES = 90; // Considera o fator de carga 0,7 na função de espalhamento para 26 caracteres do alfabeto. fc = [37/26] = 0.7
-
-        ListaEncadeada[] vetorDeListas = new ListaEncadeada[POSICOES];
-
-        /*
-        Palavra palavra1 = new Palavra("Alberto");
-        Palavra palavra2 = new Palavra("Alice");
-
-
-        No no1 = new No(palavra1);
-        No no2 = new No(palavra2);
-
-        no1.setProximoNo(no2);
-        System.out.println(no1);*/
 
         String texto = DocumentIO.readFile("filename.txt");
         //System.out.println(texto);
 
-
-        List<String> palavras = Arrays.asList(texto.split("\\W+")); //retira todos os caracteres que não são palavras e adiciona a uma lista
-//        for (String p : palavras){
-//            System.out.println(p);
-//        }
-        for (int i = 1; i < palavras.size(); i++) {
-            No no = new No();
-            ListaEncadeada lista = new ListaEncadeada();
-            if (!Objects.equals(palavras.get(i), "")) {
-                Palavra pal = new Palavra(palavras.get(i));
-                no.setPalavra(pal);
-                int pos = Hash.funcHash(pal);
-                lista.adicionar(no);
-                if (vetorDeListas[pos] == null) {
-                    vetorDeListas[pos] = lista;
-                }else vetorDeListas[pos].adicionar(no);
-            }
-            System.out.println(vetorDeListas[i]);
+        String[] palavras = Arrays.asList(texto.split("\\W+")).toArray(new String[0]); //retira todos os caracteres que não são palavras e adiciona a uma lista
+        Set<String> conjunto = new TreeSet<>();
+        Collections.addAll(conjunto, palavras);
+        conjunto.remove("");
+        int tamanhoSet = conjunto.size();
+        List<Palavra> listaPalavras = new ArrayList<Palavra>();
+        for (String p : conjunto) {
+            Palavra p1 = new Palavra(p);
+            p1.setOcorrencia(1);
+            listaPalavras.add(p1);
         }
+        System.out.println(conjunto);
+        System.out.println(listaPalavras);
+
+        TreeMap<String, TreeSet<Integer>> indice = new TreeMap<>();
+        try (BufferedReader leitor = new BufferedReader(new FileReader("filename.txt"))) {
+            String linha;
+            int numeroLinha = 1;
+            while ((linha = leitor.readLine()) != null) {
+                // Quebrar linha em palavras, removendo pontuação e convertendo para minúsculas
+                String[] palavras2 = linha.toLowerCase().split("[^a-zA-ZÀ-ÿ0-9]+");
+
+                for (String palavra : palavras2) {
+                    if (!palavra.isEmpty()) { // Evita inserir strings vazias
+                        indice.putIfAbsent(palavra, new TreeSet<>());
+                        indice.get(palavra).add(numeroLinha);
+                    }
+                }
+                numeroLinha++;
+            }
+
+        } catch (IOException e) {
+            System.err.println("Erro ao ler o arquivo: " + e.getMessage());
+        }
+        // Exibir índice remissivo
+        List<String> st = new ArrayList<>();
+        for (Map.Entry<String, TreeSet<Integer>> entrada : indice.entrySet()) {
+            String linhaFormatada = (entrada.getKey() + "  " + entrada.getValue());
+            st.add(linhaFormatada);
+        }
+
+        DocumentIO.writeFile("resultado.txt", st);
+
     }
 
-
 }
-
-

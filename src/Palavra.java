@@ -1,10 +1,11 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class Palavra {
 
     //Atributos
     private String palavra;
-    private List<Integer> ocorrencia;
+    private List<Integer> ocorrencia = new ArrayList<>();
 
     //Construtor com parâmetros
     public Palavra(String palavra) {
@@ -45,7 +46,7 @@ public class Palavra {
     @Override
     public String toString() {
 
-        return palavra;
+        return palavra + " " + ocorrencia;
     }
 }
 

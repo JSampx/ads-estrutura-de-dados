@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.List;
 import java.util.Scanner;
 
 public class DocumentIO {
@@ -10,7 +11,7 @@ public class DocumentIO {
             File fileToOpen = new File(file);
             Scanner openDocument = new Scanner(fileToOpen);
             while (openDocument.hasNextLine()) {
-                text.append(" "+ openDocument.nextLine());
+                text.append(" "+ openDocument.nextLine().toLowerCase());
             }
             openDocument.close();
         } catch (FileNotFoundException e) {
@@ -37,10 +38,13 @@ public class DocumentIO {
         }
     }
 
-    public static void writeFile(String filename, String text) {
+    public static void writeFile(String filename, List<String> text) {
         try {
             FileWriter fileToWrite = new FileWriter(filename);
-            fileToWrite.write(text);
+            for (String p : text){
+
+                fileToWrite.write(p + "\n");
+            }
             fileToWrite.close();
             System.out.println("Arquivo gravado com sucesso");
         } catch (IOException e) {
