@@ -1,7 +1,8 @@
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
-public class Palavra {
+public class Palavra implements Comparable<Palavra> {
 
     //Atributos
     private String palavra;
@@ -47,6 +48,14 @@ public class Palavra {
     public String toString() {
 
         return palavra + " " + ocorrencia;
+    }
+
+
+    @Override
+    public int compareTo(Palavra p) {
+        if (this.getPalavra().compareTo(p.getPalavra()) != 0){
+            return this.getPalavra().compareTo(p.getPalavra());
+        }else return p.getPalavra().compareTo(this.getPalavra());
     }
 }
 

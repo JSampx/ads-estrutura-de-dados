@@ -1,7 +1,7 @@
 public class ListaEncadeada {
     /*
     Estrutura de dados para armazenar uma lista de objetos palavras em nós. Contém o nó com a palavra.
-     */
+
     private No<Palavra> primeiroNo;
     private No<Palavra> ultimoNo;
     private int tamanho = 0;
@@ -71,6 +71,7 @@ public class ListaEncadeada {
          * }
          */
 
-        return builder.toString();
-    }
+       // return builder.toString();
+    //}
+
 }
