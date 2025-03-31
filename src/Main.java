@@ -1,54 +1,56 @@
-import java.io.FileNotFoundException;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+
 public class Main {
-    public static void main(String[] args) throws FileNotFoundException {
-//        DocumentIO doc = new DocumentIO();
-//        System.out.println(doc.readFile("filename.txt"));
-        final int POSICOES = 90; // Considera o fator de carga 0,7 na função de espalhamento para 26 caracteres do alfabeto. fc = [37/26] = 0.7
-
+    public static void main(String[] args) {
+        final int POSICOES = 46; // Tamanho da Tabela Hash
+        final String ARQUIVO_TEXTO = "filename.txt";
         ListaEncadeada[] vetorDeListas = new ListaEncadeada[POSICOES];
 
-        /*
-        Palavra palavra1 = new Palavra("Alberto");
-        Palavra palavra2 = new Palavra("Alice");
+        try (BufferedReader leitor = new BufferedReader(new FileReader(ARQUIVO_TEXTO))) {
+            String linha;
+            int numeroLinha = 1;
 
+            while ((linha = leitor.readLine()) != null) {
+                // Divide a linha em palavras
+                String[] palavras = linha.toLowerCase().split("[^a-zA-ZÀ-ÿ0-9]+");
 
-        No no1 = new No(palavra1);
-        No no2 = new No(palavra2);
+                for (String palavra : palavras) {
+                    if (!palavra.isEmpty()) {
+                        Palavra pal = new Palavra(palavra);
+                        int pos = Hash.funcHash(pal);
 
-        no1.setProximoNo(no2);
-        System.out.println(no1);*/
+                        // Se a lista na posição `pos` ainda não foi criada, cria uma nova
+                        if (vetorDeListas[pos] == null) {
+                            vetorDeListas[pos] = new ListaEncadeada();
+                        }
 
-        String texto = DocumentIO.readFile("filename.txt");
-        //System.out.println(texto);
+                        // Verifica se a palavra já está na lista encadeada
+                        Palavra palavraExistente = vetorDeListas[pos].buscar(palavra);
 
-
-        List<String> palavras = Arrays.asList(texto.split("\\W+")); //retira todos os caracteres que não são palavras e adiciona a uma lista
-//        for (String p : palavras){
-//            System.out.println(p);
-//        }
-        for (int i = 1; i < palavras.size(); i++) {
-            No no = new No();
-            ListaEncadeada lista = new ListaEncadeada();
-            if (!Objects.equals(palavras.get(i), "")) {
-                Palavra pal = new Palavra(palavras.get(i));
-                no.setPalavra(pal);
-                int pos = Hash.funcHash(pal);
-                lista.adicionar(no);
-                if (vetorDeListas[pos] == null) {
-                    vetorDeListas[pos] = lista;
-                }else vetorDeListas[pos].adicionar(no);
+                        if (palavraExistente == null) {
+                            pal.setOcorrencia(numeroLinha);
+                            vetorDeListas[pos].adicionar(pal);
+                        } else {
+                            palavraExistente.setOcorrencia(numeroLinha);
+                        }
+                    }
+                }
+                numeroLinha++;
             }
-            System.out.println(vetorDeListas[i]);
+        } catch (IOException e) {
+            System.err.println("Erro ao ler o arquivo: " + e.getMessage());
+        }
+
+        // Exibir o índice remissivo ordenado
+        for (ListaEncadeada lista : vetorDeListas) {
+            if (lista != null) {
+                for (int i = 0; i < lista.getTamanho(); i++) {
+                    System.out.println(lista.buscaNo(i));
+                }
+            }
         }
     }
-
-
 }
-
-
