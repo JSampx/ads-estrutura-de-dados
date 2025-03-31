@@ -3,6 +3,9 @@ import java.util.Comparator;
 import java.util.List;
 
 public class Palavra implements Comparator<Palavra> {
+/* Classe Palavra para armazenar as ocorrências do texto fornecido. Terá dois atributos: a palavra
+(string) e a lista das ocorrências dessa palavra no texto (Lista Encadeada);*/
+
 
     //Atributos
     private String palavra;

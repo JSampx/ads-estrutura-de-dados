@@ -7,9 +7,9 @@ import java.io.IOException;
 public class Main {
     public static void main(String[] args) {
         final int POSICOES = 37; // Tamanho da Tabela Hash
-        final String ARQUIVO_TEXTO = "outro.txt";
-        //final String ARQUIVO_TEXTO = "arquivo_de_entrada.txt";
-        final String ARQUIVO_TEXTO_RESULTADO = "resultado.txt";
+        //final String ARQUIVO_TEXTO = "outro.txt";
+        final String ARQUIVO_TEXTO = "arquivo_de_entrada.txt";
+        final String ARQUIVO_TEXTO_RESULTADO = "arquivo_de_saida.txt";
         ListaEncadeada[] vetorDeListas = new ListaEncadeada[POSICOES];
 
         try (BufferedReader leitor = new BufferedReader(new FileReader(ARQUIVO_TEXTO))) {

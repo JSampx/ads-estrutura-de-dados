@@ -1,4 +1,5 @@
 public class Hash {
+    /* Classe Hash contém uma função para retonar uma int posição para armazenar na vetor de espalhamento*/
     public static int funcHash(Palavra palavra){
         int posicoes = 31;
         //Casting da primeira letra da palavra em int pela tabela ASCII transformando em lower case

@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.Scanner;
 
 public class DocumentIO {
-/* Classe para manipular arquivos .txt na raiz do projeto*/
+/* Classe para manipular arquivos .txt na raiz do projeto. Estou usando como referência. Posso acabar não usando */
 
     public static String readFile(String file) {
         StringBuilder text = new StringBuilder();
