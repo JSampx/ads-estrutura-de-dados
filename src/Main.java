@@ -18,7 +18,7 @@ public class Main {
 
             while ((linha = leitor.readLine()) != null) {
                 // Divide a linha em palavras
-                String[] palavras = linha.toLowerCase().split("[^a-zA-ZÀ-ÿ0-9]+");
+                String[] palavras = linha.toLowerCase().split("[^a-zA-ZÀ-ÿ0-9]+"); //Regex para extrair qualquer caractere que não seja palavra.
 
                 for (String palavra : palavras) {
                     if (!palavra.isEmpty()) {
