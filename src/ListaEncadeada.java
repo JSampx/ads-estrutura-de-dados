@@ -1,5 +1,3 @@
-import java.util.EmptyStackException;
-
 public class ListaEncadeada {
     /*
     Estrutura de dados para armazenar uma lista de objetos palavras em nós. Contém o nó com a palavra.
@@ -36,7 +34,7 @@ public class ListaEncadeada {
     public Palavra buscaNo(int posicao) {
 
         if (this.tamanho == 0) {
-            throw new IllegalArgumentException("NAO_EXISTE");
+            throw new IllegalArgumentException("O nó não existe. Verifique a palavra");
         }
 
         Palavra noAtual = this.primeiroNo;

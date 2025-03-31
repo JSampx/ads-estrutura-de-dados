@@ -1,7 +1,7 @@
 public class Hash {
     public static int funcHash(Palavra palavra){
         int posicoes = 31;
-        //Cast da inicial da palavra em int o primeiro caractere pela tabela ASCII transformando em lower case
+        //Casting da primeira letra da palavra em int pela tabela ASCII transformando em lower case
         int initial = (int) palavra.getPalavra().toLowerCase().charAt(0);
         return initial % posicoes;
     }
